@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import type { Pet } from "../types/pet.js";
 import PetCard from "../components/PetCard";
 import "../styles/AdminPetList.css";
 
 const AdminPetList = () => {
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState<Pet[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newPet, setNewPet] = useState({
     name: "",
@@ -18,7 +19,7 @@ const AdminPetList = () => {
     location: "", // This will hold the city name initially
     image: "",
   });
-  const [imageFile, setImageFile] = useState(null); // State for the image file
+  const [imageFile, setImageFile] = useState<File | null>(null); // State for the image file
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("role");
 
@@ -43,16 +44,17 @@ const AdminPetList = () => {
     setShowAddForm(true);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewPet({ ...newPet, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if(file) setImageFile(file)
   };
 
-  const geocodeCity = async (cityName) => {
+  const geocodeCity = async (cityName: string) => {
     try {
       const response = await axios.get(
         "https://nominatim.openstreetmap.org/search",
@@ -76,24 +78,29 @@ const AdminPetList = () => {
     }
   };
 
-  const handleAddPetSubmit = async (e) => {
+  const handleAddPetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
-      const formData = new FormData();
-      formData.append("file", imageFile);
-      formData.append("upload_preset", "petAdopt");
+      let imageUrl = "";
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        formData.append("upload_preset", "petAdopt");
 
-      const cloudinaryRes = await axios.post(
-        process.env.CLOUDINARY_URL,
-        formData
-      );
+        const cloudinaryRes = await axios.post(
+          import.meta.env.VITE_CLOUDINARY_URL,
+          formData
+        );
+        imageUrl = cloudinaryRes.data.secure_url;
+      }
 
-      const imageUrl = cloudinaryRes.data.secure_url;
-
-      // Geocode the city to get latitude and longitude
       const { lat, lng } = await geocodeCity(newPet.location);
-      const newPetData = { ...newPet, location: { lat, lng }, image: imageUrl };
+
+      const newPetData = {
+        ...newPet,
+        location: { lat, lng },
+        image: imageUrl,
+      };
 
       const response = await axios.post(
         "http://localhost:3000/pets",
@@ -105,6 +112,7 @@ const AdminPetList = () => {
 
       setPets([...pets, response.data]);
       setShowAddForm(false);
+
       setNewPet({
         name: "",
         type: "",
@@ -116,6 +124,7 @@ const AdminPetList = () => {
         location: "",
         image: "",
       });
+
       setImageFile(null);
     } catch (error) {
       console.error("Error uploading pet:", error);

@@ -7,10 +7,11 @@ import { FaPhone, FaEdit, FaHeart } from "react-icons/fa";
 import { BiSolidHomeHeart } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail, MdDelete } from "react-icons/md";
+import type { Pet } from "../types/pet.js";
 
 const PetDetailPage = () => {
-  const { id } = useParams();
-  const [pet, setPet] = useState(null);
+  const { id } = useParams<{id: string}>();
+  const [pet, setPet] = useState<Pet | null>(null);
   const [cityName, setCityName] = useState(""); // State to store the city name
   const [isFavorite, setIsFavorite] = useState(false); 
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const PetDetailPage = () => {
           }
         );
         setIsFavorite(
-          favoritesResponse.data.some((favPet) => favPet._id === id)
+          favoritesResponse.data.some((favPet: Pet) => favPet._id === id)
         );
       } catch (error) {
         console.error("Error fetching pet details:", error);

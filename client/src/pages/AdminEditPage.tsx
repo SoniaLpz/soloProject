@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import type { Pet } from "../types/pet.js";
 import axios from "axios";
 import "../styles/AdminEditPage.css";
 
+interface PetForm {
+  name: string;
+  age: number | "";
+  image: string;
+}
+
 const AdminEditPage = () => {
-  const { id } = useParams(); // Ensure `id` is obtained correctly
-  const [pet, setPet] = useState({
+  const { id } = useParams<{id: string}>(); // Ensure `id` is obtained correctly
+
+  const [pet, setPet] = useState<PetForm>({
     name: "",
     age: "",
     image: "",
   });
-  const token = localStorage.getItem("token");
+  const [imageFile, setImageFile] = useState<File | null>(null); 
+
   const navigate = useNavigate();
-  const [imageFile, setImageFile] = useState(null); 
+  const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("role");
 
   useEffect(() => {
@@ -30,16 +39,17 @@ const AdminEditPage = () => {
     fetchPet();
   }, [id]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPet({ ...pet, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if(file) setImageFile(file);
   };
 
-  const handleEditSubmit = async (e) => {
+  const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -52,7 +62,7 @@ const AdminEditPage = () => {
         formData.append("upload_preset", "petAdopt");
 
         const uploadResponse = await axios.post(
-          process.env.CLOUDINARY_URL,
+          import.meta.env.CLOUDINARY_URL,
           formData
         );
 

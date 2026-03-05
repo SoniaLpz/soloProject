@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PetCard from "../components/PetCard";
-import MapComponent from "../components/MapComponent";
+import PetCard from "../components/PetCard.jsx";
+import type { Pet } from "../types/pet.js";
+import type { Filters } from "../types/filters.js";
+import MapComponent from "../components/MapComponent.jsx";
 import "../styles/PetListPage.css";
 
 const PetListPage = () => {
-  const [pets, setPets] = useState([]);
-  const [filters, setFilters] = useState({ type: "", location: "" });
+  const [pets, setPets] = useState<Pet[]>([]);
+  const [filters, setFilters] = useState<Filters>({ type: "", city: "", age: ""});
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -21,7 +23,7 @@ const PetListPage = () => {
     fetchPets();
   }, []);
 
-  const handleFilterChange = (e) => {
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 

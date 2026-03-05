@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/AdminMessages.css";
+import type { Message } from "../types/message.js";
 
 const AdminMessages = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const token = localStorage.getItem("token");
 
   useEffect(() => {

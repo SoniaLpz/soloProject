@@ -1,4 +1,5 @@
 export interface Pet {
+    _id: string;
     name: string; 
     type: string;
     favorite: boolean; 
@@ -6,14 +7,15 @@ export interface Pet {
     age?: number ; 
     gender?: string; 
     location? : {
-    lat: number,
-    lng: number
+    lat?: number,
+    lng?: number
     }; 
     city?: string; 
-    description?: string, 
-    image?: string, 
-    available?: boolean, 
-    shelterName?: string, 
-    email?: string, 
+    description?: string;
+    image?: string;
+    available?: boolean;
+    shelterName?: string;
+    email?: string;
+    phone?: string;
 }
 
