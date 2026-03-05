@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import type { Pet } from "../types/pet.js";
-import PetCard from "../components/PetCard";
+import PetCard from "../components/PetCard.js";
 import "../styles/AdminPetList.css";
 
 const AdminPetList = () => {
