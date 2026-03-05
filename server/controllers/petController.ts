@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Pet from "../models/pet";
 
 // Get all pets
-exports.getAllPets = async (req: Request, res: Response) => {
+export const getAllPets = async (req: Request, res: Response) => {
   try {
     const pets = await Pet.find();
     res.json(pets);
@@ -26,7 +26,7 @@ exports.addPet = async (req: Request, res: Response) => {
 };
 
 //Get one Pet for details
-exports.getOnePet = async (req: Request, res: Response) => {
+export const getOnePet = async (req: Request, res: Response) => {
   try {
     const pet = await Pet.findById(req.params.id);
     res.json(pet);

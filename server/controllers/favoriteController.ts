@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Pet from '../models/pet'
 
 // Toggle favorite status of a pet
-exports.toggleFavoriteStatus = async (req: Request, res: Response) => {
+export const toggleFavoriteStatus = async (req: Request, res: Response) => {
   const { id: petId } = req.params;
 
   try {
@@ -23,7 +23,7 @@ exports.toggleFavoriteStatus = async (req: Request, res: Response) => {
 };
 
 // Get user's favorite pets
-exports.getAllFavorites = async (req: Request, res: Response) => {
+export const getAllFavorites = async (req: Request, res: Response) => {
   try {
     const favoritePets = await Pet.find({ favorite: true });
     res.status(200).json(favoritePets);

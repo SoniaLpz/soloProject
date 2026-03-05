@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
 // Register a new user
-exports.register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response) => {
   try {
     const { email, password, role } = req.body;
     const user = new User({ email, password, role });
@@ -17,7 +17,7 @@ exports.register = async (req: Request, res: Response) => {
 };
 
 // Login a user
-exports.login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
