@@ -1,11 +1,12 @@
 export interface Pet {
+    _id: string;
     name: string; 
     type: string;
     favorite: boolean; 
     breed?: string; 
     age?: number ; 
     gender?: string; 
-    location? : {
+    location : {
     lat: number,
     lng: number
     }; 
@@ -14,6 +15,7 @@ export interface Pet {
     image?: string, 
     available?: boolean, 
     shelterName?: string, 
-    email?: string, 
+    phone: string,
+    email?: string 
 }
 
