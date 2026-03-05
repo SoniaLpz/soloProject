@@ -1,5 +1,6 @@
 const Pet = require("../models/Pet");
 const Message = require("../models/Message");
+import { Request, Response } from "express";
 
 // Fetch all pets (for shelters to manage)
 exports.getAllPets = async (req, res) => {
