@@ -1,13 +1,15 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const authRoutes = require("./routes/auth");
-const petRoutes = require("./routes/pets");
-const contactRoutes = require("./routes/contact");
-const dashboardRoutes = require("./routes/dashboard");
-const favoriteRoutes = require("./routes/favorite");
-const Pet = require("./models/Pet");
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+import authRoutes from "./routes/auth";
+import petRoutes from "./routes/pets";
+import contactRoutes from "./routes/contact";
+import dashboardRoutes from "./routes/dashboard";
+import favoriteRoutes from "./routes/favorite";
+import Pet from "./models/pet";
+
+dotenv.config();
 
 const mockPets = [
   {
@@ -162,7 +164,7 @@ app.use(cors());
 
 // MongoDB connection and mock data insertion
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI as string)
   .then(async () => {
     console.log("Connected to MongoDB");
 

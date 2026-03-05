@@ -1,4 +1,4 @@
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 interface UserPayload extends jwt.JwtPayload {

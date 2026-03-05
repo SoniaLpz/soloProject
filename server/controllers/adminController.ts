@@ -1,6 +1,6 @@
-import {Request, Response} from 'express';
-import Pet from '../models/pet';
-import Message from '../models/Message';
+import { Request, Response } from "express";
+import Pet from "../models/pet";
+import Message from "../models/Message";
 
 // Fetch all pets (for shelters to manage)
 export const getAllPets = async (req: Request, res: Response) => {
@@ -63,5 +63,3 @@ export const getAllMessages = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to retrieve messages" });
   }
 };
-
-// export {getAllPets, addPet, editPet, deletePet, getAllMessages};

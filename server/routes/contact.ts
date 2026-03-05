@@ -1,8 +1,8 @@
-import express = require("express");
-import { submitContactForm } from '../controllers/contactController';
+import express from "express";
+import { submitContactForm } from "../controllers/contactController";
 
 const router = express.Router();
 
 router.post("/", submitContactForm);
 
-module.exports = router;
+export default router;

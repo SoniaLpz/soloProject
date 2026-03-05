@@ -1,13 +1,12 @@
-import express = require("express");
-
+import express from "express";
 import {
   getAllPets,
   addPet,
   editPet,
   deletePet,
   getAllMessages,
-} from '../controllers/adminController';
-import authMiddleware from '../middleware/authMiddleware';
+} from "../controllers/adminController";
+import authMiddleware from "../middleware/authMiddleware";
 
 const router = express.Router();
 // Pet routes
@@ -19,4 +18,4 @@ router.delete("/pets/:id", authMiddleware, deletePet);
 // Message routes
 router.get("/messages", authMiddleware, getAllMessages);
 
-module.exports = router;
+export default router;
