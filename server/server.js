@@ -162,10 +162,7 @@ app.use(cors());
 
 // MongoDB connection and mock data insertion
 mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGODB_URI)
   .then(async () => {
     console.log("Connected to MongoDB");
 
