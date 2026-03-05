@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { register } from "../services/authService.jsx";
+import { register } from "../services/authService.js";
 import "../styles/RegisterPage.css";
 
 const RegisterPage = () => {

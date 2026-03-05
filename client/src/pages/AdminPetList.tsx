@@ -30,7 +30,7 @@ const AdminPetList = () => {
           "http://localhost:3000/dashboard/pets",
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
         setPets(response.data);
       } catch (error) {
@@ -64,7 +64,7 @@ const AdminPetList = () => {
             format: "json",
             limit: 1,
           },
-        }
+        },
       );
       if (response.data.length > 0) {
         const { lat, lon } = response.data[0];
@@ -107,7 +107,7 @@ const AdminPetList = () => {
         newPetData,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       setPets([...pets, response.data]);
