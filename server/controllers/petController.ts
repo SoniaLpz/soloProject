@@ -1,6 +1,5 @@
-import { Request, Response } from 'express';
-import { AuthRequest } from '../types/express';
-import Pet from '../models/pet';
+import { Request, Response } from "express";
+import Pet from "../models/pet";
 
 // Get all pets
 exports.getAllPets = async (req: Request, res: Response) => {
@@ -13,7 +12,7 @@ exports.getAllPets = async (req: Request, res: Response) => {
 };
 
 // Add a new pet (for shelters)
-exports.addPet = async (req: AuthRequest, res: Response) => {
+exports.addPet = async (req: Request, res: Response) => {
   try {
     const newPet = new Pet({
       ...req.body,
