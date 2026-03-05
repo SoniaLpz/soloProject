@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/LoginPage.css";
@@ -16,7 +16,7 @@ const LoginPage = () => {
     try {
       const response = await axios.post(
         "http://localhost:3000/auth/login",
-        formData
+        formData,
       );
       const { token, role } = response.data;
 
