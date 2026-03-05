@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PetCard from "../components/PetCard";
+import PetCard from "../components/PetCard.js";
 import "../styles/FavsPetPage.css";
 
 const FavoritePetsPage = () => {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PetCard from "../components/PetCard";
-import MapComponent from "../components/MapComponent";
+import PetCard from "../components/PetCard.js";
+import MapComponent from "../components/MapComponent.js";
 import "../styles/PetListPage.css";
 
 const PetListPage = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PetCard from "../components/PetCard";
+import PetCard from "../components/PetCard.js";
 import "../styles/AdminPetList.css";
 
 const AdminPetList = () => {
@@ -29,7 +29,7 @@ const AdminPetList = () => {
           "http://localhost:3000/dashboard/pets",
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
         setPets(response.data);
       } catch (error) {
@@ -62,7 +62,7 @@ const AdminPetList = () => {
             format: "json",
             limit: 1,
           },
-        }
+        },
       );
       if (response.data.length > 0) {
         const { lat, lon } = response.data[0];
@@ -86,7 +86,7 @@ const AdminPetList = () => {
 
       const cloudinaryRes = await axios.post(
         process.env.CLOUDINARY_URL,
-        formData
+        formData,
       );
 
       const imageUrl = cloudinaryRes.data.secure_url;
@@ -100,7 +100,7 @@ const AdminPetList = () => {
         newPetData,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       setPets([...pets, response.data]);

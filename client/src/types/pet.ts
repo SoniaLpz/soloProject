@@ -18,4 +18,3 @@ export interface Pet {
     phone: string,
     email?: string 
 }
-
