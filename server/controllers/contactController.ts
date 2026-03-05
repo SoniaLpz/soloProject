@@ -1,6 +1,7 @@
-const Message = require("../models/Message");
+import {Request, Response} from 'express';
+import Message from '../models/Message';
 
-exports.submitContactForm = async (req, res) => {
+exports.submitContactForm = async (req: Request, res: Response) => {
   const { name, email, message } = req.body;
   console.log("Received data:", { name, email, message }); // Log data here
 
