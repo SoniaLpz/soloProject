@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import Message from '../models/Message';
 
-exports.submitContactForm = async (req: Request, res: Response) => {
+export const submitContactForm = async (req: Request, res: Response) => {
   const { name, email, message } = req.body;
   console.log("Received data:", { name, email, message }); // Log data here
 

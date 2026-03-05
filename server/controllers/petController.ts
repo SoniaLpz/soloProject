@@ -3,7 +3,7 @@ import { AuthRequest } from '../types/express';
 import Pet from '../models/pet';
 
 // Get all pets
-exports.getAllPets = async (req: Request, res: Response) => {
+export const getAllPets = async (req: Request, res: Response) => {
   try {
     const pets = await Pet.find();
     res.json(pets);
@@ -13,7 +13,7 @@ exports.getAllPets = async (req: Request, res: Response) => {
 };
 
 // Add a new pet (for shelters)
-exports.addPet = async (req: AuthRequest, res: Response) => {
+export const addPet = async (req: AuthRequest, res: Response) => {
   try {
     const newPet = new Pet({
       ...req.body,
@@ -27,7 +27,7 @@ exports.addPet = async (req: AuthRequest, res: Response) => {
 };
 
 //Get one Pet for details
-exports.getOnePet = async (req: Request, res: Response) => {
+export const getOnePet = async (req: Request, res: Response) => {
   try {
     const pet = await Pet.findById(req.params.id);
     res.json(pet);
