@@ -1,9 +1,9 @@
-const express = require("express");
+import express = require("express");
 const {
   getAllFavorites,
   toggleFavoriteStatus,
 } = require("../controllers/favoriteController");
-const authMiddleware = require("../middleware/authMiddleware"); // Fix import
+import authMiddleware = require("../middleware/authMiddleware"); // Fix import
 
 const router = express.Router();
 

@@ -1,10 +1,10 @@
-const express = require("express");
+import express = require("express");
 const {
   getAllPets,
   addPet,
   getOnePet,
-} = require("../controllers/petController");
-const authMiddleware = require("../middleware/authMiddleware");
+} = from("../controllers/petController");
+import authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
