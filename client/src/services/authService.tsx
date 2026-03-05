@@ -1,12 +1,8 @@
 import axios from "axios";
+import type { UserData } from "../types/userData.js";
 
 // Base URL for the backend API
 const API_URL = "http://localhost:3000/auth";
-
-interface UserData {
-  username: string;
-  password: string;
-}
 
 interface AuthResponse {
   token: string;

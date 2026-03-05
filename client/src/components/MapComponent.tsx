@@ -1,8 +1,9 @@
 import "leaflet/dist/leaflet.css";
 import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import type { Pet } from '../types/pet.js'
 
-const MapComponent = ({ pets }) => {
+const MapComponent = ({ pets}: {pets: Pet[]}) => {
   // Generate random offsets to avoid marker overlap for pets with the same location
   const getRandomOffset = () => (Math.random() - 0.5) * 0.001;
 
@@ -16,7 +17,7 @@ const MapComponent = ({ pets }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      {pets.map((pet) => (
+      {pets.map((pet: Pet ) => (
         <Marker
           key={pet._id}
           position={[

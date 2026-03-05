@@ -1,6 +1,8 @@
 import "../styles/PetCard.css";
 import { Link } from "react-router-dom";
-const PetCard = ({ pet }) => {
+import type { Pet } from '../types/pet.js'
+
+const PetCard = ({ pet }: {pet: Pet}) => {
   return (
     <div className="pet-card">
       <div className="pet-info">
