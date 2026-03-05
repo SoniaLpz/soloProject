@@ -1,7 +1,8 @@
-const Pet = require("../models/Pet");
+import { Request, Response } from 'express';
+import Pet from '../models/pet'
 
 // Toggle favorite status of a pet
-exports.toggleFavoriteStatus = async (req, res) => {
+exports.toggleFavoriteStatus = async (req: Request, res: Response) => {
   const { id: petId } = req.params;
 
   try {
@@ -22,7 +23,7 @@ exports.toggleFavoriteStatus = async (req, res) => {
 };
 
 // Get user's favorite pets
-exports.getAllFavorites = async (req, res) => {
+exports.getAllFavorites = async (req: Request, res: Response) => {
   try {
     const favoritePets = await Pet.find({ favorite: true });
     res.status(200).json(favoritePets);
