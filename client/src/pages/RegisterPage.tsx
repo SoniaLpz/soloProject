@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { register } from "../services/authService.js";
 import "../styles/RegisterPage.css";
+import type { UserData } from "../types/userData.js";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -10,14 +11,16 @@ const RegisterPage = () => {
   });
   const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.SubmitEvent): Promise<void> => {
     e.preventDefault();
     try {
-      await register(formData);
+      await register(formData as UserData);
       setMessage("Registration successful! You can now log in.");
     } catch (error) {
       setMessage("Error registering. Please try again.");
