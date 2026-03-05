@@ -12,7 +12,7 @@ export const getAllPets = async (req: Request, res: Response) => {
 };
 
 // Add a new pet (for shelters)
-exports.addPet = async (req: Request, res: Response) => {
+export const addPet = async (req: Request, res: Response) => {
   try {
     const newPet = new Pet({
       ...req.body,
