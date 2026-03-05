@@ -1,9 +1,9 @@
-const Pet = require("../models/Pet");
-const Message = require("../models/Message");
-import { Request, Response } from "express";
+import {Request, Response} from 'express';
+import Pet from '../models/pet';
+import Message from '../models/Message';
 
 // Fetch all pets (for shelters to manage)
-exports.getAllPets = async (req, res) => {
+exports.getAllPets = async (req: Request, res: Response) => {
   try {
     const pets = await Pet.find();
     res.status(200).json(pets);
@@ -13,7 +13,7 @@ exports.getAllPets = async (req, res) => {
 };
 
 // Add a new pet
-exports.addPet = async (req, res) => {
+exports.addPet = async (req: Request, res: Response) => {
   try {
     const newPet = new Pet({
       name: req.body.name,
@@ -31,7 +31,7 @@ exports.addPet = async (req, res) => {
 };
 
 // Edit an existing pet
-exports.editPet = async (req, res) => {
+exports.editPet = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const updatedPet = await Pet.findByIdAndUpdate(id, req.body, { new: true });
@@ -41,7 +41,7 @@ exports.editPet = async (req, res) => {
   }
 };
 
-exports.deletePet = async (req, res) => {
+exports.deletePet = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const deletedPet = await Pet.findByIdAndDelete(id);
@@ -55,7 +55,7 @@ exports.deletePet = async (req, res) => {
 };
 
 // Fetch all messages
-exports.getAllMessages = async (req, res) => {
+exports.getAllMessages = async (req: Request, res: Response) => {
   try {
     const messages = await Message.find();
     res.status(200).json(messages);
@@ -63,3 +63,5 @@ exports.getAllMessages = async (req, res) => {
     res.status(500).json({ error: "Failed to retrieve messages" });
   }
 };
+
+// export {getAllPets, addPet, editPet, deletePet, getAllMessages};
