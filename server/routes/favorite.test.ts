@@ -17,7 +17,7 @@ app.use(express.json());
 app.use('/favorite', router);
 
 
-describe.only("Favorite routes", () => {
+describe("Favorite routes", () => {
 
   test('POST /:id/toggle', async () => {
 
