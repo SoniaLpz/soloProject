@@ -1,7 +1,6 @@
-import {expect, test, afterEach, vi} from 'vitest';
+import {expect, test, afterEach, vi, describe} from 'vitest';
 import { submitContactForm } from './contactController';
 import Message from '../models/Message';
-import { describe } from 'node:test';
 
 vi.mock('../models/Message', () => {
 
