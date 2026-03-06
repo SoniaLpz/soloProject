@@ -17,14 +17,14 @@ const mockRes = () =>
     json: vi.fn(),
   }) as unknown as Response;
 
-describe.only("Favorite Controller", () => {
+describe("Favorite Controller", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   describe("Toggle Favorite Status", () => {
+    const saveMock = vi.fn().mockResolvedValue({});
     test("should toggle favorite status of a pet", async () => {
-      const saveMock = vi.fn().mockResolvedValue({});
       (Pet.findById as Mock).mockResolvedValue({
         ...mockPet,
         favorite: false,
@@ -44,7 +44,7 @@ describe.only("Favorite Controller", () => {
         pet: { ...mockPet, favorite: true, save: saveMock },
       });
     });
-    test("should return 4040 if pet not found", async () => {
+    test("should return 404 if pet not found", async () => {
       (Pet.findById as Mock).mockResolvedValue(null); // No pet found
 
       const req = { params: { id: "1" } } as unknown as Request;
@@ -73,12 +73,34 @@ describe.only("Favorite Controller", () => {
   });
 
   describe("Get All Favorites", () => {
+    const favoritePets = [
+      { ...mockPet, favorite: true },
+      { id: "2", name: "Mittens", type: "Cat", favorite: true },
+    ];
+
     test("should return all favorite pets", async () => {
-      const favoritePets = [
-        { ...mockPet, favorite: true },
-        { id: "2", name: "Mittens", type: "Cat", favorite: true },
-      ];
       (Pet.find as Mock).mockResolvedValue(favoritePets);
+      const req = {} as Request;
+      const res = mockRes();
+
+      await getAllFavorites(req, res);
+
+      expect(Pet.find).toHaveBeenCalledTimes(1);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(favoritePets);
+    });
+
+    test("should return 500 if failed to fetch pets", async () => {
+      (Pet.find as Mock).mockRejectedValue(new Error("Database error"));
+      const req = {} as Request;
+      const res = mockRes();
+
+      await getAllFavorites(req, res);
+
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.json).toHaveBeenCalledWith({
+        error: "Failed to fetch favorite pets",
+      });
     });
   });
 });
