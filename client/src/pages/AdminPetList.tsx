@@ -51,7 +51,7 @@ const AdminPetList = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if(file) setImageFile(file)
+    if (file) setImageFile(file);
   };
 
   const geocodeCity = async (cityName: string) => {
@@ -78,7 +78,7 @@ const AdminPetList = () => {
     }
   };
 
-  const handleAddPetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAddPetSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     try {
       let imageUrl = "";
@@ -89,7 +89,7 @@ const AdminPetList = () => {
 
         const cloudinaryRes = await axios.post(
           import.meta.env.VITE_CLOUDINARY_URL,
-          formData
+          formData,
         );
         imageUrl = cloudinaryRes.data.secure_url;
       }

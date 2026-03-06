@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import type { Pet } from "../types/pet.js";
 import axios from "axios";
 import "../styles/AdminEditPage.css";
 
@@ -11,14 +10,14 @@ interface PetForm {
 }
 
 const AdminEditPage = () => {
-  const { id } = useParams<{id: string}>(); // Ensure `id` is obtained correctly
+  const { id } = useParams<{ id: string }>(); // Ensure `id` is obtained correctly
 
   const [pet, setPet] = useState<PetForm>({
     name: "",
     age: "",
     image: "",
   });
-  const [imageFile, setImageFile] = useState<File | null>(null); 
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -46,10 +45,10 @@ const AdminEditPage = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if(file) setImageFile(file);
+    if (file) setImageFile(file);
   };
 
-  const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleEditSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
 
     try {
@@ -63,7 +62,7 @@ const AdminEditPage = () => {
 
         const uploadResponse = await axios.post(
           import.meta.env.CLOUDINARY_URL,
-          formData
+          formData,
         );
 
         updatedPet.image = uploadResponse.data.secure_url; // Update with new image URL
@@ -74,7 +73,7 @@ const AdminEditPage = () => {
         updatedPet,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       navigate(`/pets/${id}`);
