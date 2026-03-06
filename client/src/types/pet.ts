@@ -6,9 +6,9 @@ export interface Pet {
     breed?: string; 
     age?: number ; 
     gender?: string; 
-    location? : {
-    lat?: number,
-    lng?: number
+    location : {
+    lat: number,
+    lng: number
     }; 
     city?: string; 
     description?: string;
