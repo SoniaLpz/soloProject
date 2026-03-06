@@ -157,12 +157,10 @@ const mockPets = [
   },
 ];
 
-//middleware
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// MongoDB connection and mock data insertion
 mongoose
   .connect(process.env.MONGODB_URI as string)
   .then(async () => {
@@ -181,12 +179,10 @@ mongoose
     console.error("Error connecting to MongoDB:", error.message);
   });
 
-//routes
 app.use("/auth", authRoutes);
 app.use("/pets", petRoutes);
 app.use("/contact", contactRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/favorite", favoriteRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+export default app;
