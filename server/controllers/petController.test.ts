@@ -47,7 +47,6 @@ it('add a new animal to the list', async () => {
       json: vi.fn()
     } as any;
     
-    
     await addPet(req, res);
     expect(Pet).toHaveBeenCalledWith(mockData);
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({name: 'Buddy', type: 'dog'}));
