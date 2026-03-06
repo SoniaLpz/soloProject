@@ -2,10 +2,7 @@ import { test, describe, expect, beforeEach, vi } from "vitest";
 import request from "supertest";
 import app from "./app";
 
-vi.mock("./models/user");
-vi.mock("./models/pet");
-vi.mock("jsonwebtoken");
-vi.mock("bcrypt");
+
 
 describe("App", () => {
   beforeEach(() => {
