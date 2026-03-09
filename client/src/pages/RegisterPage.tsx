@@ -50,7 +50,8 @@ const RegisterPage = () => {
           />
         </div>
         <div className="form-group">
-          <select name="role" onChange={handleChange} required>
+          <label htmlFor="role">Role</label>
+          <select id="role" name="role" onChange={handleChange} required>
             <option value="adopter">Adopter</option>
             <option value="shelter">Shelter</option>
           </select>
