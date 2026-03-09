@@ -10,11 +10,13 @@
     "module": "nodenext",
     "target": "esnext",
     "types": ["vite/client", "@testing-library/jest-dom"],
+    "moduleResolution": "nodenext",
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
-
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
