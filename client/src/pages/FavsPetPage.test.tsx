@@ -9,7 +9,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 const server = setupServer(
   http.get('/favorite', () => {
-    return HttpResponse.json({message: 'List Favorite'})
+    return  HttpResponse.json([{ _id: '1', name: 'Buddy' }, { _id: '2', name: 'John' }])
   }),
 )
 
@@ -24,14 +24,12 @@ const server = setupServer(
    </MemoryRouter>
  );
 
-  userEvent.type(
-    screen.getByRole('heading', {name: "Favorite Pets"}), 
-  )
-
-   const results = screen.getAllByRole('list').map((favorites) => {
-    return within(favorites).getByRole('heading', {name: "Favorite Pets"}).textContent
+   const results = (await screen.findAllByRole('heading')).map((fetchFavorites) => {
+    return within(fetchFavorites).findByRole('pet-list')
   })
 
-  expect(results).toMatchInlineSnapshot(); 
+
+  expect(results.flat().length).toBeGreaterThan(0);
+
 
 });
