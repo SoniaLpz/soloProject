@@ -37,6 +37,7 @@
     "globals": "^16.5.0",
     "jsdom": "^28.1.0",
     "leaflet": "^1.9.4",
+    "msw": "^2.12.10",
     "react-leaflet": "^5.0.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
