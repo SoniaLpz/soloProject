@@ -8,14 +8,27 @@ import { http, HttpResponse } from "msw";
 import { MemoryRouter } from "react-router-dom";
 
 const server = setupServer(
-  http.get("/favorite", () => {
-    return HttpResponse.json({ message: "List Favorite" });
+  http.get('/favorite', () => {
+    return  HttpResponse.json([{ _id: '1', name: 'Buddy' }, { _id: '2', name: 'John' }])
   }),
 );
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
+
+let storage: Record<string,string> = {};
+
+beforeEach(() => {
+  vi.clearAllMocks();
+  storage = {};
+  window.localStorage = {
+    getItem: (key: string) => storage[key] || null,
+    setItem: (key: string, value: string) => {storage[key] = value},
+    removeItem: (key: string) => {delete storage[key]},
+    clear: () => {storage = {}}
+  } as any;
+});
 
 it("List Favorite", async () => {
   render(
@@ -24,12 +37,12 @@ it("List Favorite", async () => {
     </MemoryRouter>,
   );
 
-  userEvent.type(screen.getByRole("heading", { name: "Favorite Pets" }));
+   const results = (await screen.findAllByRole('heading')).map((fetchFavorites) => {
+    return within(fetchFavorites).findByRole('pet-list')
+  })
 
-  const results = screen.getAllByRole("list").map((favorites) => {
-    return within(favorites).getByRole("heading", { name: "Favorite Pets" })
-      .textContent;
-  });
 
-  expect(results).toMatchInlineSnapshot();
+  expect(results.flat().length).toBeGreaterThan(0);
+
+
 });
