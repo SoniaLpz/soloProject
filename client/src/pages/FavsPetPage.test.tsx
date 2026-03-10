@@ -16,6 +16,19 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+let storage: Record<string,string> = {};
+
+beforeEach(() => {
+  vi.clearAllMocks();
+  storage = {};
+  window.localStorage = {
+    getItem: (key: string) => storage[key] || null,
+    setItem: (key: string, value: string) => {storage[key] = value},
+    removeItem: (key: string) => {delete storage[key]},
+    clear: () => {storage = {}}
+  } as any;
+});
+
 it("List Favorite", async () => {
   render(
     <MemoryRouter>
