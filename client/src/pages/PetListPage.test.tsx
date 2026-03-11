@@ -132,7 +132,7 @@ describe('PetListPage', () => {
 
     const input = screen.getByPlaceholderText(/age/i);
 
-    await user.type(input, mockPets[0]!.age);
+    await user.type(input, String(mockPets[0]!.age));
 
     expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
     expect(screen.queryByText(mockPets[1]!.name)).not.toBeInTheDocument();
