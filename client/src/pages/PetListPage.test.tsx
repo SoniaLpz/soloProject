@@ -60,8 +60,8 @@ describe('PetListPage', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText("Buddy")).toBeInTheDocument();
-      expect(screen.getByText("John")).toBeInTheDocument();
+      expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
+      expect(screen.getByText(mockPets[1]!.name)).toBeInTheDocument();
     });
 
   });
@@ -79,13 +79,13 @@ describe('PetListPage', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText("Buddy")).toBeInTheDocument();
+      expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
     });
     const input = screen.getByPlaceholderText("Type (e.g., Cat)");
-    await user.type(input, "Dog");
+    await user.type(input, mockPets[0]!.type);
 
-    expect(screen.getByText("Buddy")).toBeInTheDocument();
-    expect(screen.queryByText("John")).not.toBeInTheDocument();
+    expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
+    expect(screen.queryByText(mockPets[1]!.name)).not.toBeInTheDocument();
 
   });
 
@@ -102,15 +102,15 @@ describe('PetListPage', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText("Buddy")).toBeInTheDocument();
+      expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
     });
 
     const input = screen.getByPlaceholderText(/city/i);
 
-    await user.type(input, "London");
+    await user.type(input, mockPets[0]!.city);
 
-    expect(screen.getByText("Buddy")).toBeInTheDocument();
-    expect(screen.queryByText("John")).not.toBeInTheDocument();
+    expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
+    expect(screen.queryByText(mockPets[1]!.name)).not.toBeInTheDocument();
 
   });
 
@@ -127,15 +127,15 @@ describe('PetListPage', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText("Buddy")).toBeInTheDocument();
+      expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
     });
 
     const input = screen.getByPlaceholderText(/age/i);
 
-    await user.type(input, "3");
+    await user.type(input, mockPets[0]!.age);
 
-    expect(screen.getByText("Buddy")).toBeInTheDocument();
-    expect(screen.queryByText("John")).not.toBeInTheDocument();
+    expect(screen.getByText(mockPets[0]!.name)).toBeInTheDocument();
+    expect(screen.queryByText(mockPets[1]!.name)).not.toBeInTheDocument();
 
   });
 
