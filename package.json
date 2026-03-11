@@ -10,7 +10,13 @@
     "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "nodemon": "^3.1.7",
     "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
   }
 }
