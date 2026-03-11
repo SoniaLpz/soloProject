@@ -1,7 +1,6 @@
-import { vi, describe, it, expect } from "vitest";
+import { it, expect } from "vitest";
 import FavoritePetsPage from "./FavsPetPage.js";
 import { render, screen, within } from "@testing-library/react";
-import { userEvent } from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { setupServer } from "msw/node";
 import { http, HttpResponse } from "msw";
