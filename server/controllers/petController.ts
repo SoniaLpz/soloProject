@@ -21,7 +21,7 @@ export const addPet = async (req: Request, res: Response) => {
     await newPet.save();
     res.status(201).json(newPet);
   } catch (error) {
-    res.status(400).json({ error: "Internal Server Error." });
+    res.status(500).json({ error: "Internal Server Error." });
   }
 };
 
