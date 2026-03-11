@@ -16,7 +16,9 @@ const Navbar = () => {
       <h3>PetAdopt</h3>
       <div className="nav-links">
         {isLoggedIn ? (
-          <button onClick={handleLogout}>Logout</button>
+          <button aria-label="Logout" onClick={handleLogout}>
+            Logout
+          </button>
         ) : (
           <Link to="/login">Login</Link>
         )}
