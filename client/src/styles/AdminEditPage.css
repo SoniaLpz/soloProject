@@ -35,3 +35,12 @@
 .edit-form button:hover {
   background-color: gray;
 }
+
+#availability {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  border-radius: 7px;
+  font-size: inherit;
+}

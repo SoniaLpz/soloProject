@@ -23,6 +23,9 @@
   padding-bottom: 8px;
   margin-left: 16px;
 }
+#status {
+  border-radius: 2px;
+}
 
 .floating-favorites-button {
   position: fixed;

@@ -13,7 +13,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      <div className="logo">
+      <Link to='/'>
       <h3>PetAdopt</h3>
+      </Link>
+      </div>
       <div className="nav-links">
         {isLoggedIn ? (
           <button aria-label="Logout" onClick={handleLogout}>

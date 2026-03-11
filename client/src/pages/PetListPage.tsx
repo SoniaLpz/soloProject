@@ -10,6 +10,7 @@ import "../styles/PetListPage.css";
 const PetListPage = () => {
   const [pets, setPets] = useState<Pet[]>([]);
   const [filters, setFilters] = useState<Filters>({ type: "", city: "", age: ""});
+  const [available, setAvailable] = useState("all");
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -23,7 +24,7 @@ const PetListPage = () => {
     fetchPets();
   }, []);
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
@@ -37,7 +38,8 @@ const PetListPage = () => {
       (filters.city
         ? pet.city?.toLowerCase().includes(filters.city.toLowerCase())
         : true) &&
-      (filters.age ? pet.age === parseInt(filters.age) : true)
+      (filters.age ? pet.age === parseInt(filters.age) : true) &&
+      (available === 'available' ? pet.available === true : available === 'adopted' ? pet.available === false : true)
     );
   });
 
@@ -66,6 +68,11 @@ const PetListPage = () => {
           placeholder="Age"
           onChange={handleFilterChange}
         />
+        <select id="status" value={available} onChange={(e) => setAvailable(e.target.value)}>
+          <option value="all">All Pets</option>
+          <option value="available">Available</option>
+          <option value="adopted" >Adopted</option>
+        </select>
       </div>
 
       <div className="pet-list">

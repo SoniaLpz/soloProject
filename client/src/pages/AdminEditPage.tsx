@@ -18,6 +18,7 @@ const AdminEditPage = () => {
     image: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isAvailable, setIsAvailable] = useState("true");
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -52,7 +53,7 @@ const AdminEditPage = () => {
     e.preventDefault();
 
     try {
-      const updatedPet = { ...pet };
+      const updatedPet = { ...pet, available: isAvailable };
 
       if (imageFile) {
         // Upload image file here and get the URL
@@ -103,6 +104,10 @@ const AdminEditPage = () => {
             onChange={handleInputChange}
             required
           />
+          <select id="availability" value={isAvailable} onChange={(e) => setIsAvailable(e.target.value)} >
+            <option value="true">Available</option>
+            <option value="false">Adopted</option>
+          </select>
 
           <input type="file" name="image" onChange={handleFileChange} />
 

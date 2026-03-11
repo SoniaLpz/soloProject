@@ -24,7 +24,8 @@
       "email": "together@gmail.com",
       "image": "/images/luci.jpg",
       "gender": "Female",
-      "favorite": false
+      "favorite": false,
+      "available": false
     },
     {
       "name": "Tom",
@@ -76,7 +77,8 @@
       "email": "your@gmail.com",
       "image": "/images/bella.jpg",
       "gender": "Female",
-      "favorite": false
+      "favorite": false,
+      "available": false
     },
     {
       "name": "Violla",
@@ -115,7 +117,8 @@
       "email": "home@gmail.com",
       "image": "/images/snowball.jpg",
       "gender": "Female",
-      "favorite": false
+      "favorite": false,
+      "available": false
     },
     {
       "name": "Rocky",
