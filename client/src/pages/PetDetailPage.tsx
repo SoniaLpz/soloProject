@@ -91,7 +91,7 @@ const PetDetailPage = () => {
       console.error("Error deleting pet:", error);
     }
   };
-
+  
   // Handler for navigating to the edit page
   const handleEdit = () => {
     navigate(`/pets/${id}/edit`);
@@ -135,6 +135,7 @@ const PetDetailPage = () => {
           <MdEmail style={{ color: "black", marginRight: "8px" }} />
           {pet.email}
         </p>
+        <p style={{fontWeight:"bold", color: pet.available ? "green" : "red"}}>{pet.available ? "Available" : "Adopted"}</p>
       </div>
 
       {/* Pet image and contact section */}

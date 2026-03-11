@@ -90,3 +90,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.status {
+  font-weight: bold;
+  background-color: red;
+}

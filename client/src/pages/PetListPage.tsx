@@ -47,7 +47,7 @@ const PetListPage = () => {
     <div className="pet-list-page">
       <MapComponent pets={filteredPets} />
 
-      <h2>Available Pets for Adoption</h2>
+      <h2>{available === 'all' ? "All Pets" : available === 'available' ? "Available Pets for Adoption" : "Adopted Pets"}</h2>
       <div className="filter-form">
         <input
           type="text"
