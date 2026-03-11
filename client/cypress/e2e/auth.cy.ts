@@ -45,7 +45,6 @@ describe("Full auth e2e", () => {
 
 describe("Logout flow", () => {
   beforeEach(() => {
-    // use cy.window() to set a fake token in localStorage
     cy.window().then((win) => win.localStorage.setItem("token", "fake-token"));
     cy.visit("/dashboard");
   });
