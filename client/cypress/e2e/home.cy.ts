@@ -1,4 +1,8 @@
 describe.only('Home Page', () => {
+   beforeEach(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+  });
 
   it('Users can navigate to Pets page', () => {
 
