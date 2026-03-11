@@ -23,6 +23,7 @@ Cypress.Commands.add("register", (email, password, role) => {
   cy.get('button[type="submit"]').should("be.visible").click();
   cy.wait("@registerRequest");
 });
+
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
