@@ -45,7 +45,7 @@ describe('PetListPage', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText(/available pets for adoption/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /All Pets/i }),).toBeInTheDocument();
 
   });
 
